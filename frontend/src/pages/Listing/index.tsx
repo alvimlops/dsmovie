@@ -1,10 +1,39 @@
 
 import Pagination from "components/Pagination";
 import MovieCard from "components/MovieCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "utils/requests";
+import { MoviePage } from "types/movie";
 
 function listem(){
+   
+   
+     const[pageNumber, setPageNumber] = useState(0);
+
+     useEffect(() =>{
+
+        axios.get(`${BASE_URL}/movie?size=12&page=1`)
+        .then(response => {
+            const data = response.data as MoviePage;
+            console.log(data);
+            setPageNumber(data.number);
+        });
+
+     }, []);
+     
+     
+     
+
+   
+   
+   
+   
+   
+   
     return(
         <>
+        <p>{pageNumber}</p>
         <Pagination/>
 
 
